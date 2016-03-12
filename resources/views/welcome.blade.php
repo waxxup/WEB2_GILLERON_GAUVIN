@@ -31,15 +31,15 @@
             }
 
             .title {
-                font-size: 96px;
+                font-size: 206px;
             }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">cacahuete 5</div>
-                <h2>yutaeuyateuyaetuyteau</h2>
+                <div class="title">Module Laravel</div>
+                <h2>Gilleron | Gauvin</h2>
             </div>
         </div>
     </body>
