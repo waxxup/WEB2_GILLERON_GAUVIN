@@ -31,15 +31,14 @@
             }
 
             .title {
-                font-size: 206px;
+                font-size: 96px;
             }
         </style>
     </head>
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Module Laravel</div>
-                <h2>Gilleron | Gauvin</h2>
+                <div class="title">Laravel 5</div>
             </div>
         </div>
     </body>
