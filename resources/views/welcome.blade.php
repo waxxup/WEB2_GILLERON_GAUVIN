@@ -38,7 +38,8 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Laravel 5</div>
+                <div class="title">TD MODULE LARAVEL</div>
+                <h1>GILLERON | GAUVIN</h1>
             </div>
         </div>
     </body>
