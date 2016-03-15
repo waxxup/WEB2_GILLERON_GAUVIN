@@ -43,6 +43,8 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::resource('/articles', 'PostController');
 
+    Route::get('/profil', 'UserProfilController@index' );
+
 });
 
 Route::group(['middleware' => 'web'], function () {

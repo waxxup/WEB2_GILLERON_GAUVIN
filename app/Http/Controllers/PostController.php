@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bap;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
 
-class BapController extends Controller
+class PostController extends Controller
 {
-    public function __construct(){
-
+    public function __construct()
+    {
         $this->middleware('auth', ['except' => ['index', 'show']]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -21,9 +23,9 @@ class BapController extends Controller
      */
     public function index()
     {
-        $bap = Post::all();
+        $posts = Post::all();
 
-        return view('articles.index')->with(compact('bap'));
+        return view('articles.index')->with(compact('posts'));
     }
 
     /**
