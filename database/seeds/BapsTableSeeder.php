@@ -11,7 +11,7 @@ class BapsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Models\Bap::class, 30)->create();
+        factory(App\Models\Bap::class, 5)->create();
 
     }
 }
