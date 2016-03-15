@@ -17,7 +17,7 @@ class CreateBapsTable extends Migration
             $table->string('title');
             $table->string('client');
             $table->string('adress');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('phone');
             $table->longText('presentation');
             $table->string('type');
