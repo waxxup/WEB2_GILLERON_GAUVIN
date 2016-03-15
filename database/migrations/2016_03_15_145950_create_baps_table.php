@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBapTable extends Migration
+class CreateBapsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,7 +12,7 @@ class CreateBapTable extends Migration
      */
     public function up()
     {
-        Schema::create('bap', function (Blueprint $table) {
+        Schema::create('baps', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
             $table->string('client');
@@ -36,6 +36,6 @@ class CreateBapTable extends Migration
      */
     public function down()
     {
-        Schema::drop('bap');
+        Schema::drop('baps');
     }
 }

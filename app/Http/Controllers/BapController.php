@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 
 
-class PostController extends Controller
+class BapController extends Controller
 {
     public function __construct(){
 
@@ -21,9 +21,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        $bap = Post::all();
+        $baps = Bap::all();
 
-        return view('articles.index')->with(compact('bap'));
+        return view('bap.index')->with(compact('baps'));
     }
 
     /**

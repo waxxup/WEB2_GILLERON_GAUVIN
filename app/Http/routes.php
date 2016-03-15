@@ -28,7 +28,7 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
 
-    Route::group(['prefix' => 'articles'], function() {
+    Route::group(['prefix' => 'bap'], function() {
 
         /* Route::post('/articles', function(Request $request) {
            dd($request->all());
@@ -40,13 +40,16 @@ Route::group(['middleware' => ['web']], function () {
                  dd($request->all());
              }]); */
     });
-
-    Route::resource('/articles', 'PostController');
+    Route::get('/bap', function () {
+        return view('bap.index');
+    });
+    Route::resource('/bap', 'BapController');
 
 });
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
+
     Route::get('/', function () {
         return view('welcome');
     });
