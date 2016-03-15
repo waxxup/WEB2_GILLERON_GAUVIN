@@ -45,6 +45,8 @@ Route::group(['middleware' => ['web']], function () {
     });
     Route::resource('/bap', 'BapController');
 
+    Route::get('/profil', 'UserProfilController@index' );
+
 });
 
 Route::group(['middleware' => 'web'], function () {
