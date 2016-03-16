@@ -15,6 +15,7 @@ class CreateBapsTable extends Migration
         Schema::create('baps', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->string('valid');
             $table->string('client');
             $table->string('adress');
             $table->string('email');

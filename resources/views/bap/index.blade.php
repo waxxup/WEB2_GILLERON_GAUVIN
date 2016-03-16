@@ -10,7 +10,7 @@
                         @foreach($baps as $bap)
                             <div class="bap col-md-offset-1 col-md-10" style="background-color:#e6e6fa;margin-bottom:30px">
 
-                                <h2><label>Titre de la BAP :</label> {{$bap->title}} </h2>
+                                <h2><label>Titre de la BAP :</label> <a href="{{route('bap.show', $bap->id)}}">{{$bap->title}} </a></h2>
                                 <div class="col-md-offset-1 col-md-10" style="background-color:white; margin-bottom:10px">
                           <h3><label>Nom du client : </label>{{$bap->client}}</h3>
                                 <p><label>Adresse postale du client : </label>{{$bap->adress}}</p>
@@ -21,7 +21,26 @@
 <p><label>Demande du client : </label>{{$bap->demande}}</p>
                                 <p><label>Contexte du projet :</label> {{$bap->contexte}}</p>
                                 <p><label>Objectifs du  projet : </label>{{$bap->objectif}}</p>
-<p><label>Contraintes :</label> {{$bap->contraintes}}</p></div></div>
+<p><label>Contraintes :</label> {{$bap->contraintes}}</p></div>
+
+                                @if( Auth::user()->role == "admin")
+                                    <div class="row">
+<div class="col-md-2 col-md-offset-5">
+    <button class="btn btn-lg btn-success">
+                                    <a href="{{route('bap.edit', $bap->id)}}">
+                                    Modifier
+                                    </a></button>
+</div>
+                            </div>
+                                <form class="col-md-2 col-md-offset-3" action="{{route('bap.destroy', $bap->id)}}" method="POST">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button class="btn btn-lg btn-info">SUPPRIMER (visible seulement pour l'admin)</button>
+                                </form>
+
+
+                                @endif
+                            </div>
 
 
 

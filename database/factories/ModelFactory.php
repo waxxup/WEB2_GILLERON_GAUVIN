@@ -15,10 +15,13 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     return [
         'name' => $faker->name,
         'email' => $faker->email,
+        'role' => 'randomUser',
         'password' => bcrypt(str_random(10)),
         'remember_token' => str_random(10),
     ];
 });
+
+
 
 $factory->define(App\Models\Bap::class, function (Faker\Generator $faker) {
     return [
@@ -34,5 +37,6 @@ $factory->define(App\Models\Bap::class, function (Faker\Generator $faker) {
         'demande' => $faker->text(200),
         'objectif' => $faker->text(200),
         'contraintes' => $faker->text(200),
+        'valid' => 'no',
     ];
 });

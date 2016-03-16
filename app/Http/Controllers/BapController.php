@@ -138,19 +138,19 @@ class BapController extends Controller
     public function destroy($id)
     {
 
-        $post = Post::find($id);
+        $bap = Bap::find($id);
 
-        if(!$post) {
+        if(!$bap) {
 
-            return redirect()->route('articles.index');
+            return redirect()->route('bap.index');
 
 
         }
 
 
-        $post->delete();
+        $bap->delete();
 
-        return redirect()->route('articles.index');
+        return redirect()->route('bap.index');
 
     }
 }
