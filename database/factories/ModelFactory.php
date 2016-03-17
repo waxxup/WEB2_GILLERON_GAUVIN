@@ -40,3 +40,10 @@ $factory->define(App\Models\Bap::class, function (Faker\Generator $faker) {
         'valid' =>  $faker->numberBetween(0,1),
     ];
 });
+$factory->define(App\Models\Post::class, function (Faker\Generator $faker) {
+    return [
+        'user_id' => $faker->numberBetween(1,10),
+        'title' => $faker->text(30),
+        'description' => $faker->text(200),
+    ];
+});
