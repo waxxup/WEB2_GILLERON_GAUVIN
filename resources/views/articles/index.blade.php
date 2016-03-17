@@ -5,9 +5,10 @@
 
                     <div class="panel-body">
                         <h1>LISTE DES ARTICLES</h1>
+                        @if( Auth::user()->admin == 1)
                         <a href="{{route('articles.create')}}">Créer un article</a><br>
                         <hr>
-
+                        @endif
                     @foreach($posts as $post)
                         <h2> {{$post->title}} </h2>
                         <h3>Auteur: {{ $post->user->name }}</h3>
