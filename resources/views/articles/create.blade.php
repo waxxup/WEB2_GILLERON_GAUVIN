@@ -9,9 +9,9 @@
        {{ csrf_field() }}
 
        <br>
-       {!! Form::text('title') !!}
+       <b>Titre de l'article :</b><br>{!! Form::text('title') !!}
        <br>
-       {{ Form::textarea('description') }}
+       <b>Écrivez votre article :</b><br>{{ Form::textarea('description') }}
        <br>
        {!! Form::submit('Envoyer') !!}
        {!! Form::close() !!}

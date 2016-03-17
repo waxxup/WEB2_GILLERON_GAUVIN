@@ -18,18 +18,20 @@
                                     Afficher l'article
                                 </button>
                             </a>
-
+                            @if( Auth::user()->admin == 1)
                             <a href="{{route('articles.edit', $post->id)}}">
                                 <button class="btn btn-default">
                                     Editer l'article
                                 </button>
                             </a>
-
+                            @endif
+                            @if( Auth::user()->admin == 1)
                         <form action="{{route('articles.destroy', $post->id)}}" method="POST">
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="DELETE">
                             <button>SUPPRIMER</button>
                         </form>
+                            @endif
                         @endforeach
                     </div>
 
