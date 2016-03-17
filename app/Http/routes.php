@@ -28,22 +28,6 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
 
-    Route::group(['prefix' => 'articles'], function() {
-
-        /* Route::post('/articles', function(Request $request) {
-           dd($request->all());
-        }); */
-
-        /*  Route::post('/', [
-             'as' => 'articles.store',
-             'uses' => function (Request $request) {
-                 dd($request->all());
-             }]); */
-    });
-
-    Route::resource('/articles', 'PostController');
-
-
     Route::group(['prefix' => 'bap'], function() {
 
         /* Route::post('/articles', function(Request $request) {
@@ -77,9 +61,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('/bap', 'BapController');
 
     Route::resource('/admin', 'AdminController');
-
-
-
+    Route::get('/profil', 'UserProfilController@index' );
 
 });
 Route::get('/profil', function () {
