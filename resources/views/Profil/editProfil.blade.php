@@ -8,15 +8,15 @@
                         Here you can modify your profile.
                     </div>
 
-                    {!! Form::open (['route' => ['Profil.update', $user->id], 'method'=> 'PUT'])  !!}
+                    {!! Form::open(['url' => route('profil.store'), 'method' => 'POST']) !!}
+                    {{ csrf_field() }}
 
-                    {!! Form::text('name', $user->name, ['class' => 'form-control']) !!}
-
-                    {!! Form::text('email', $user->email, ['class' => 'form-control']) !!}
-
+                    <br>
+                    {!! Form::text('name') !!}
+                    <br>
+                    {{ Form::text('email') }}
+                    <br>
                     {!! Form::submit('Envoyer') !!}
-
-
                     {!! Form::close() !!}
 
 @endsection

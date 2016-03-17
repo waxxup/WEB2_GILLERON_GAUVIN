@@ -28,24 +28,16 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['web']], function () {
 
-    Route::group(['prefix' => 'bap'], function() {
 
-        /* Route::post('/articles', function(Request $request) {
-           dd($request->all());
-        }); */
-
-        /*  Route::post('/', [
-             'as' => 'articles.store',
-             'uses' => function (Request $request) {
-                 dd($request->all());
-             }]); */
-    });
     Route::get('/bap', function () {
         return view('bap.index');
     });
     Route::resource('/bap', 'BapController');
 
-    Route::get('/profil', 'UserProfilController@index' );
+    Route::get('/profil', function () {
+        return view('Profil.editProfil');
+    });
+    Route::resource('/profil', 'UserController' );
 
 });
 

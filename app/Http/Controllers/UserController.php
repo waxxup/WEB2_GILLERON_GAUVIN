@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
-use App\Models\User;
+
 use App\Http\Requests;
 
-class UserProfilController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,9 @@ class UserProfilController extends Controller
      */
     public function index()
     {
-        return view('Profil.editProfil');
+        $users = User::all();
+
+        return view('Profil.editProfil')->with(compact('users'));
     }
 
     /**
@@ -36,7 +39,14 @@ class UserProfilController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $post = Post::create($request->except('_token'));
+
+
+
+
+        return redirect()->route('articles.show', $post->id);
+
     }
 
     /**
@@ -47,7 +57,7 @@ class UserProfilController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -58,14 +68,13 @@ class UserProfilController extends Controller
      */
     public function edit($id)
     {
-        $user = User::all()->lists('name', 'id', 'email');
-
-        if(!$user) {
+        $users = User::find($id);
+        if(!$users) {
 
             return redirect()->to('/articles');
         }
 
-        return view('Profil.editProfil')->with(compact('user'));
+        return view('profil.editProfil')->with(compact('users'));
     }
 
     /**
@@ -77,25 +86,11 @@ class UserProfilController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        $user = $request->user();
+        $data['name'] = $request->input('name');
+        $data['email']=$request->input('email');
 
-        if(!$user) {
-
-            return redirect()->to('/articles');
-
-
-        }
-
-        $user->title = $request->title;
-        $user->description = $request->description;
-        $user->user_id = $request->user_id;
-
-        $user->save();
-
-        return redirect()->route('Profil.editProfil', $user->$id);
-
-
-
+        $user->users -> $data->save();
     }
 
     /**
