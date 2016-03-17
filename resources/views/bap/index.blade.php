@@ -61,10 +61,10 @@
                                 @if( Auth::user()->admin == 1)
                                     <div class="row">
 <div class="col-md-2 col-md-offset-5">
-    <button class="btn btn-lg btn-success">
-                                    <a href="{{route('bap.edit', $bap->id)}}">
+    <a href="{{route('bap.edit', $bap->id)}}"><button class="btn btn-lg btn-success">
+
                                     Modifier
-                                    </a></button>
+                                    </button></a>
 </div>
 
                             </div>
