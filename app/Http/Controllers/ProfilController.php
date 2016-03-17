@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Bap;
-use App\Models\User;
-use App\Http\Requests;
 
+
+
+use App\Models\User;
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
 
 class ProfilController extends Controller
 {
@@ -18,7 +20,8 @@ class ProfilController extends Controller
     {
         $users = User::all();
 
-        return view('profil.index')->with(compact('users'));
+
+        return view('profil.index') -> with(compact('users'));
     }
 
 

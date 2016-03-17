@@ -1,5 +1,5 @@
-<?php
 
+<?php
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -10,11 +10,9 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -25,29 +23,23 @@ Route::get('/', function () {
 | kernel and includes session state, CSRF protection, and more.
 |
 */
-
 Route::group(['middleware' => ['web']], function () {
-
     Route::group(['prefix' => 'articles'], function() {
-
         /* Route::post('/articles', function(Request $request) {
            dd($request->all());
         }); */
-
         /*  Route::post('/', [
              'as' => 'articles.store',
              'uses' => function (Request $request) {
                  dd($request->all());
              }]); */
     });
-
     Route::resource('/articles', 'PostController');
+    Route::resource('/articles.show', 'CommentsController');
     Route::group(['prefix' => 'bap'], function() {
-
         /* Route::post('/articles', function(Request $request) {
            dd($request->all());
         }); */
-
         /*  Route::post('/', [
              'as' => 'articles.store',
              'uses' => function (Request $request) {
@@ -55,11 +47,9 @@ Route::group(['middleware' => ['web']], function () {
              }]); */
     });
     Route::group(['prefix' => 'admin'], function() {
-
         /* Route::post('/articles', function(Request $request) {
            dd($request->all());
         }); */
-
         /*  Route::post('/', [
              'as' => 'articles.store',
              'uses' => function (Request $request) {
@@ -73,17 +63,13 @@ Route::group(['middleware' => ['web']], function () {
         return view('admin.bap');
     })->middleware('web');
     Route::resource('/bap', 'BapController');
-
     Route::resource('/admin', 'AdminController');
-
-
 });
 Route::get('/profil', function () {
     return view('profil.index');
 })->middleware('web');
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
-
     Route::get('/', function () {
         return view('welcome');
     });
