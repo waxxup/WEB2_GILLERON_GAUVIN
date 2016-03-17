@@ -16,7 +16,7 @@ class UsersTableSeeder extends Seeder
             'name'   => 'admin',
             'email'      => 'admin@admin.fr',
             'password'   => Hash::make('admin'),
-            'role'       => 'admin',
+            'admin'       => 1,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime()
         ]);
@@ -24,7 +24,7 @@ class UsersTableSeeder extends Seeder
             'name'   => 'random',
             'email'      => 'random@random.fr',
             'password'   => Hash::make('random'),
-            'role'       => 'randomUser',
+            'admin'       => 0,
             'created_at' => new DateTime(),
             'updated_at' => new DateTime()
         ]);

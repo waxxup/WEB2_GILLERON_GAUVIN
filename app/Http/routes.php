@@ -40,11 +40,27 @@ Route::group(['middleware' => ['web']], function () {
                  dd($request->all());
              }]); */
     });
+    Route::group(['prefix' => 'admin'], function() {
+
+        /* Route::post('/articles', function(Request $request) {
+           dd($request->all());
+        }); */
+
+        /*  Route::post('/', [
+             'as' => 'articles.store',
+             'uses' => function (Request $request) {
+                 dd($request->all());
+             }]); */
+    });
     Route::get('/bap', function () {
         return view('bap.index');
-    });
+    })->middleware('web');
+    Route::get('/admin', function () {
+        return view('admin.bap');
+    })->middleware('web');
     Route::resource('/bap', 'BapController');
 
+    Route::resource('/admin', 'AdminController');
     Route::get('/profil', 'UserProfilController@index' );
 
 });

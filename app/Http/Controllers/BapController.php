@@ -120,6 +120,15 @@ class BapController extends Controller
 
         $bap->title = $request->title;
         $bap->email = $request->email;
+        $bap->client = $request->client;
+        $bap->adress = $request->adress;
+        $bap->phone = $request->phone;
+        $bap->presentation = $request->presentation;
+        $bap->type = $request->type;
+        $bap->contexte = $request->contexte;
+        $bap->objectif = $request->objectif;
+        $bap->contraintes = $request->contraintes;
+         $bap->demande = $request->demande;
 
 
         $bap->save();
