@@ -7,6 +7,7 @@
                 <div class="panel-body">
                     You are logged in!
                 </div>
+                <a href="{{route('articles.index')}}">Voir les articles</a><br>
     <a href="{{route('bap.index')}}">Voir les projets BAP validés</a><br>
                 <a href="{{route('bap.create')}}">Proposer son projet BAP</a><br>
                 <a href="{{route('admin.index')}}">Page admin (seulement accessible à l'admin)</a><br>
