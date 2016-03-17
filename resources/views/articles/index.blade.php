@@ -13,8 +13,18 @@
                     @foreach($bap as $bap)
                         <h2> {{$bap->title}} </h2>
                         <p> {{$bap->description}} </p>
-
-
+@if(Auth::check() && Auth::user()->id == $post->user_id)
+                           @endif
+                            <a href="{{route('articles.show', $post->id)}}">
+                                <button class="btn btn-default">
+                                    Voir l'article
+                                </button>
+                            </a>
+                        <form action="{{route('articles.destroy', $post->id)}}" method="POST">
+                            {{csrf_field()}}
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button>SUPPRIMER</button>
+                        </form>
                         @endforeach
                     </div>
                 </div>

@@ -8,7 +8,7 @@ class Bap extends Model
 {
     protected $fillable = [
 
-        'user_id', 'title', 'description'
+        'title', 'client','phone','adress','email','presentation','type','demande','contexte','objectif','contraintes', 'valid'
 
 
     ];

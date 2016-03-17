@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use App\Models\Bap;
 use Illuminate\Http\Request;
 
@@ -33,13 +33,9 @@ class BapController extends Controller
      */
     public function create()
     {
-        /*  $post = new Post;
-         $post->title = 'un autre article';
-         $post->description = 'une autre description';
-         $post->save(); */
 
         $users = User::all()->lists('name', 'id');
-        return view('articles.create')->with(compact('users'));
+        return view('bap.create')->with(compact('users'));
     }
 
     /**
@@ -48,41 +44,16 @@ class BapController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Requests\ValidatePostRequest $request)
+    public function store(Requests\ValidateBapRequest $request)
     {
-        /*
-        $this->validate($request, [
-            'user_id' => 'required',
-            'title'   => 'required|min:10',
-            'description' => 'required|min:10'
-
-        ]);[
-            'user_id.required' => 'User id manquant',
-            'title.required' => 'Titre obligatoire',
-            'title.min' => 'Titre > 10 caractères',
-            'description.required' => 'Description obligatoire',
-            'Description.min' => 'Description > 10 caractères'
 
 
-    ];
-        */
-        /*
-        $post = new Post;
-        $post->user_id          = $request->user_id;
-        $post->title            = $request->title;
-        $post->description      = $request->description;
-
-        $post->save();
-*/
-        //Méthode 2
         $data = $request->except('_token');
-        $data['user_id'] = $request->user()->id;
-        $post = Post::create($data, $request->except('_token'));
+
+        $bap = Bap::create($data, $request->except('_token'));
 
 
-
-
-        return redirect()->route('articles.show', $post->id);
+        return redirect()->route('bap.show', $bap->id);
 
     }
 
@@ -95,25 +66,18 @@ class BapController extends Controller
 
     public function show($id)
     {
-        $post = Post::find($id);
+        $bap = Bap::find($id);
 
-        if(!$post) {
+        if(!$bap) {
 
-            return redirect()->to('/articles');
+            return redirect()->to('/bap');
         }
 
-        return view('articles.show')->with(['article' => $post]);
+        return view('bap.show')->with(['bap' => $bap]);
     }
 
 
-    /*
-    $post = Post::find($id);
-    if($post) {
-        return $post->title;
-    }
-    else {
-        return 'Pas d\'articles !';
-    }*/
+
 
 
     /**
@@ -127,13 +91,13 @@ class BapController extends Controller
     {
 
         $users = User::all()->lists('name', 'id');
-        $post = Post::find($id);
-        if(!$post) {
+        $bap = Bap::find($id);
+        if(!$bap) {
 
-            return redirect()->to('/articles');
+            return redirect()->to('/bap');
         }
 
-        return view('articles.edit')->with(compact('users', 'post'));
+        return view('bap.edit')->with(compact('users', 'bap'));
     }
 
     /**
@@ -143,24 +107,33 @@ class BapController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Requests\ValidatePostRequest $request, $id)
+    public function update(Requests\ValidateBapRequest $request, $id)
     {
-        $post =Post::find($id);
+        $bap =Bap::find($id);
 
-        if(!$post) {
+        if(!$bap) {
 
-            return redirect()->to('/articles');
+            return redirect()->to('/bap');
 
 
         }
 
-        $post->title = $request->title;
-        $post->description = $request->description;
-        $post->user_id = $request->user_id;
+        $bap->title = $request->title;
+        $bap->email = $request->email;
+        $bap->client = $request->client;
+        $bap->adress = $request->adress;
+        $bap->phone = $request->phone;
+        $bap->presentation = $request->presentation;
+        $bap->type = $request->type;
+        $bap->contexte = $request->contexte;
+        $bap->objectif = $request->objectif;
+        $bap->contraintes = $request->contraintes;
+         $bap->demande = $request->demande;
 
-        $post->save();
 
-        return redirect()->route('articles.show', $post->$id);
+        $bap->save();
+
+        return redirect()->route('bap.show', $bap->$id);
 
 
     }
@@ -174,19 +147,19 @@ class BapController extends Controller
     public function destroy($id)
     {
 
-        $post = Post::find($id);
+        $bap = Bap::find($id);
 
-        if(!$post) {
+        if(!$bap) {
 
-            return redirect()->route('articles.index');
+            return redirect()->route('bap.index');
 
 
         }
 
 
-        $post->delete();
+        $bap->delete();
 
-        return redirect()->route('articles.index');
+        return redirect()->route('bap.index');
 
     }
 }
