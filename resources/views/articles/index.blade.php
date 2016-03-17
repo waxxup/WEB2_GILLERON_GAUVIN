@@ -26,11 +26,7 @@
                                 </button>
                             </a>
                             @endif
-                            <form action="{{route('articles.destroy', $post->id)}}" method="POST">
-                                {{csrf_field()}}
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button>Commenter</button>
-                            </form>
+
                             @if( Auth::user()->admin == 1)
                         <form action="{{route('articles.destroy', $post->id)}}" method="POST">
                             {{csrf_field()}}

@@ -99,13 +99,14 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-
+        $comments = $post->comments;
+        $users = User::all()->lists('name', 'id');
         if(!$post) {
 
             return redirect()->to('/articles');
         }
 
-        return view('articles.show')->with(['article' => $post]);
+        return view('articles.show')->with(compact('post','comments', 'users'));
     }
 
 

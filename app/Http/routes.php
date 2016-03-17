@@ -42,6 +42,7 @@ Route::group(['middleware' => ['web']], function () {
     });
 
     Route::resource('/articles', 'PostController');
+    Route::resource('/articles.show', 'CommentsController');
     Route::group(['prefix' => 'bap'], function() {
 
         /* Route::post('/articles', function(Request $request) {
@@ -73,6 +74,7 @@ Route::group(['middleware' => ['web']], function () {
         return view('admin.bap');
     })->middleware('web');
     Route::resource('/bap', 'BapController');
+
 
     Route::resource('/admin', 'AdminController');
 
