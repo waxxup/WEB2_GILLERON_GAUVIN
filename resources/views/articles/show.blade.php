@@ -20,7 +20,10 @@
 
             {{ csrf_field() }}
 
+
             {!! Form::text('commentaire') !!}
+
+        <input type="hidden" name="post_id" value="{{$post->id}}">
 
         {!! Form::submit('Envoyer', array('class' => 'btn btn-lg btn-success', 'style' => 'width:50%') ) !!}
         {!! Form::close() !!}
