@@ -28,11 +28,7 @@ class CommentsController extends Controller
      */
     public function create()
     {
-        $comments = new Comment();
-        $comments->post_id = 'id du post';
-        $comments->user_id = 'id de l utilisateur';
-        $comments->commentaire = 'une autre description';
-        $comments->save();
+
     }
 
     /**
@@ -43,15 +39,7 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->except('_token');
-        $data['user_id'] = $request->user()->id;
-        $data['post_id'] = $request->user()->id;
-        $comments = Comment::create($data, $request->except('_token'));
 
-
-
-
-        return redirect()->route('articles', $comments->id);
     }
 
     /**
@@ -96,6 +84,6 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 }
