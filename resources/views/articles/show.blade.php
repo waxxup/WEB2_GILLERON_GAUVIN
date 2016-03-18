@@ -31,6 +31,7 @@
         @foreach($comments as $comment)
 
                     <p>{{$comment->user->name}} : {{$comment->commentaire}}</p>
+            @if( Auth::user()->admin == 1)
                     <form action="{{route('comments.destroy', $comment->id)}}" method="POST">
                         {{csrf_field()}}
                         <input type="hidden" name="_method" value="DELETE">
@@ -38,9 +39,15 @@
                         <input value="supprimer" type="submit" class="btn btn-danger">
 
                     </form>
-
+            @endif
 
         @endforeach
-
+        @if($errors)
+            <ul>
+                @foreach($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+    @endif
 
 @endsection

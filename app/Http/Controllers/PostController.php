@@ -45,7 +45,7 @@ class PostController extends Controller
          $post->save(); */
 
         $users = User::all()->lists('name', 'id');
-        return view('articles.index')->with(compact('users'));
+        return view('articles.create')->with(compact('users'));
 
         /**
          * On retourne une vue avec un formulaire pour créer un nouvel article

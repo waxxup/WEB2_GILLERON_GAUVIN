@@ -24,7 +24,7 @@ class ValidateCommentsRequest extends Request
     public function rules()
     {
         return [
-            'commentaire' => 'required|min:10',
+            'commentaire' => 'required',
         ];
     }
 
@@ -33,7 +33,7 @@ class ValidateCommentsRequest extends Request
         return [
 
             'commentaire.required' => 'commentaire manquant',
-            'commentaire.min' => 'Commentaire pas assez long',
+
 
 
 
