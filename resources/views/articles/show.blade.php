@@ -2,46 +2,42 @@
 
 @section('content')
 
-    <div class="container">
-        <h1>  Articles n° {{$post->id}} @if( Auth::user()->admin == 1) <a href="{{route('articles.edit', $post->id)}}">Edit</a> @endif </h1>
+    Article {{$post->id}}
 
-        <h2>{{$post->title}}</h2>
-        <h3>Auteur: {{ $post->user->name }}</h3>
+    <div class="panel-body">
+        <h3>Auteur : {{$post->user->name}}</h3>
         <p>{{$post->description}}</p>
-        <div class="row">
-
-        {!! Form::open(['url' => route('articles.store'), 'method' => 'POST']) !!}
-        {{ csrf_field() }}
-
+        <a href="{{route('articles.edit', $post->id)}}">
+            <button class="btn btn-primary">
+                Modifier l'article
+            </button></a>
         <br>
 
         <br>
         <b>Écrivez votre commentaire :</b><br>
-            <div class="col-md-12">
-            {{ Form::textarea('commentaire', null,array('class' => 'form-control', 'style' => 'width:50%') ) }}
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-4 col-md-offset-2">
+
+            {!! Form::open(['url' => action('CommentsController@store')])  !!}
+
+            {{ csrf_field() }}
+
+            {!! Form::text('commentaire') !!}
+
         {!! Form::submit('Envoyer', array('class' => 'btn btn-lg btn-success', 'style' => 'width:50%') ) !!}
-            </div>
         {!! Form::close() !!}
 
         @foreach($comments as $comment)
-        <div class="row">
-            <div class="col-md-5 col-md-offset-2">{{$comment->commentaire}}
 
-            @if( Auth::user()->admin == 1)
-                <form action="{{route('articles.destroy', $post->id)}}" method="POST">
-                    {{csrf_field()}}
-                    <input type="hidden" name="_method" value="DELETE">
-                    <button>SUPPRIMER</button>
-                </form>
-            </div>
-        </div>
-            @endif
+                    <p>{{$comment->user->name}} : {{$comment->commentaire}}</p>
+                    <form action="{{route('comments.destroy', $comment->id)}}" method="POST">
+                        {{csrf_field()}}
+                        <input type="hidden" name="_method" value="DELETE">
+
+                        <input value="supprimer" type="submit" class="btn btn-danger">
+
+                    </form>
+
+
         @endforeach
-    </div>
+
 
 @endsection

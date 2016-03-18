@@ -41,12 +41,10 @@ class PostController extends Controller
          $post->title = 'un autre article';
          $post->description = 'une autre description';
          $post->save(); */
-        $comments = new Comment();
-        $comments->commentaire = 'nouveau commentaire';
-        $comments->save();
+
 
         $users = User::all()->lists('name', 'id');
-        return view('articles.index')->with(compact('users'));
+        return view('articles.create')->with(compact('users'));
     }
 
     /**
@@ -57,23 +55,9 @@ class PostController extends Controller
      */
     public function store(Requests\ValidatePostRequest $request)
     {
-        $this->validate($request, [
 
 
-            'commentaire' => 'required|min:10'
 
-        ]);[
-
-        'commentaire.required' => 'Description obligatoire',
-        'commentaire.min' => 'Description > 10 caractères'
-
-
-    ];
-
-        $comments = new Comment();
-        $data['post_id'] = $request->post()->id;
-        $comments->commentaire            = $request->commentaire;
-        $comments->save();
 
         /*
         $this->validate($request, [
@@ -200,17 +184,7 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $comments = Comment::find($id);
 
-        if(!$comments) {
-
-            return redirect()->route('articles.index');
-
-
-        }
-
-
-        $comments->delete();
 
 
         $post = Post::find($id);

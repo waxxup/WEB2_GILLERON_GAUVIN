@@ -22,7 +22,7 @@
                @endforeach
            </ul>
        @endif
-       
+
    </div>
 
     @endsection

@@ -34,7 +34,8 @@ Route::group(['middleware' => ['web']], function () {
              }]); */
     });
     Route::resource('/articles', 'PostController');
-    Route::resource('/articles.show', 'CommentsController');
+    Route::resource('comments', 'CommentsController');
+
     Route::group(['prefix' => 'bap'], function() {
         /* Route::post('/articles', function(Request $request) {
            dd($request->all());
@@ -45,6 +46,7 @@ Route::group(['middleware' => ['web']], function () {
                  dd($request->all());
              }]); */
     });
+
     Route::group(['prefix' => 'admin'], function() {
         /* Route::post('/articles', function(Request $request) {
            dd($request->all());

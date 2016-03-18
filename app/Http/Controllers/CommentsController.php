@@ -16,9 +16,6 @@ class CommentsController extends Controller
      */
     public function index()
     {
-        $comments = Comment::all();
-
-        return view('articles.show')->with(compact('comments'));
     }
 
     /**
@@ -28,6 +25,7 @@ class CommentsController extends Controller
      */
     public function create()
     {
+
 
     }
 
@@ -39,6 +37,17 @@ class CommentsController extends Controller
      */
     public function store(Request $request)
     {
+
+
+        $comments = new Comment();
+        $comments->user_id      = $request->user()->id;
+        $comments->post_id        = $request->post_id;
+        $comments->commentaire  = $request->commentaire;
+        $comments->save();
+        return redirect()->route('articles.show', $comments->article_id);
+
+
+
 
     }
 
@@ -84,6 +93,13 @@ class CommentsController extends Controller
      */
     public function destroy($id)
     {
+
+        $comment= Comment::find($id);
+        if(!$comment){
+            return redirect()->to('/articles');
+        }
+        $comment->delete();
+        return redirect()->route('articles.index');
 
     }
 }
