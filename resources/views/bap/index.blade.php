@@ -63,7 +63,7 @@
 <div class="col-md-2 col-md-offset-5">
     <a href="{{route('bap.edit', $bap->id)}}"><button class="btn btn-lg btn-success">
 
-                                    Modifier
+                                    Modifier(seulement pour l'admin)
                                     </button></a>
 </div>
 

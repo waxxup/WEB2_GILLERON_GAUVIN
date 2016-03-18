@@ -13,37 +13,40 @@ class BapController extends Controller
     public function __construct(){
 
         $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('Admin', ['except'=> ['index', 'show']]);
+
+        /**
+         * On empeche à l'utilisateur qui n'est pas connecté et admin d'accéder à la
+         * page update
+         */
+
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $baps = Bap::all();
 
         return view('bap.index')->with(compact('baps'));
+
+        /**
+         *On retourne une vue et on y affiche toutes les BAP
+         */
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
 
-        $users = User::all()->lists('name', 'id');
-        return view('bap.create')->with(compact('users'));
+
+        return view('bap.create');
+        /**
+         * On retourne la vue de creation
+         */
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Requests\ValidateBapRequest $request)
     {
 
@@ -55,14 +58,14 @@ class BapController extends Controller
 
         return redirect()->route('bap.show', $bap->id);
 
+
+        /**
+         *On enregistre les valeurs du formulaire dans la database
+         */
+
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
     public function show($id)
     {
@@ -74,39 +77,39 @@ class BapController extends Controller
         }
 
         return view('bap.show')->with(['bap' => $bap]);
+
+        /**
+         * On retourne une vue où on affiche seulement la bap avec l'id dans l'URL
+         */
+
     }
 
 
 
 
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
 
     public function edit($id)
     {
 
-        $users = User::all()->lists('name', 'id');
+
         $bap = Bap::find($id);
         if(!$bap) {
 
             return redirect()->to('/bap');
         }
 
-        return view('bap.edit')->with(compact('users', 'bap'));
+        return view('bap.edit')->with(compact('bap'));
+
+
+        /**
+         * On retourne une vue avec un formulaire pour editer la bap avec l'id de l'url
+         * on met en placeholder les valeurs actuelles
+         */
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Requests\ValidateBapRequest $request, $id)
     {
         $bap =Bap::find($id);
@@ -135,15 +138,13 @@ class BapController extends Controller
 
         return redirect()->route('bap.show', $bap->$id);
 
+        /**
+         * On prend les valeurs du formulaire de la page édit et on les mets dans la database
+         */
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
 
@@ -160,6 +161,11 @@ class BapController extends Controller
         $bap->delete();
 
         return redirect()->route('bap.index');
+
+        /**
+         * On supprime la bap avec l'id correspondant
+         */
+
 
     }
 }

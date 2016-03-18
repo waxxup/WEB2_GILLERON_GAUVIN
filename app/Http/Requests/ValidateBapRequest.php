@@ -6,20 +6,17 @@ use App\Http\Requests\Request;
 
 class ValidateBapRequest extends Request
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     *
-     * @return bool
-     */
+
     public function authorize()
     {
         return true;
     }
 
+
+
     /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
+     * On impose des règles à l'utilisateur (required imposer à l'utilisateur d'écrire
+     * et required|min:x impose d'écrire au minimum x caractères
      */
     public function rules()
     {
@@ -40,6 +37,10 @@ class ValidateBapRequest extends Request
 
 
         ];}
+
+    /**
+     *On détermine le message envoyé sur l'utilisateur ne respècte pes les règles plus haut
+     */
 
         public function messages(){
 
