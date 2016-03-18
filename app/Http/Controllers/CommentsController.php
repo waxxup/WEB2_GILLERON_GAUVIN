@@ -44,7 +44,7 @@ class CommentsController extends Controller
         $comments->post_id        = $request->post_id;
         $comments->commentaire  = $request->commentaire;
         $comments->save();
-        return redirect()->route('articles.show', $comments->article_id);
+        return redirect()->route('articles.show', $comments->post_id);
 
 
 

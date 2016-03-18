@@ -38,20 +38,11 @@ class PostController extends Controller
 
     public function create()
     {
-<<<<<<< HEAD
+
         /*  $post = new Post;
          $post->title = 'un autre article';
          $post->description = 'une autre description';
          $post->save(); */
-
-
-        $users = User::all()->lists('name', 'id');
-        return view('articles.create')->with(compact('users'));
-=======
-
-        $comments = new Comment();
-        $comments->commentaire = 'nouveau commentaire';
-        $comments->save();
 
         $users = User::all()->lists('name', 'id');
         return view('articles.index')->with(compact('users'));
@@ -62,7 +53,7 @@ class PostController extends Controller
          * l'utilisateur plus tard)
          */
 
->>>>>>> 705460ab07a87a6ef1d5dc95c01453538fb40420
+
     }
 
 
@@ -93,7 +84,7 @@ class PostController extends Controller
 
     public function show($id)
     {
-        $post = Post::find($id);
+        $post = Post::where('id', $id)->first();
         $comments = $post->comments;
         $users = User::all()->lists('name', 'id');
         if(!$post) {

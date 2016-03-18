@@ -2,7 +2,7 @@
 
 @section('content')
 
-    Article {{$post->id}}
+    <h1>  Articles n° {{$post->id}} <a href="{{route('articles.edit', $post->id)}}">Edit</a> </h1>
 
     <div class="panel-body">
         <h3>Auteur : {{$post->user->name}}</h3>
