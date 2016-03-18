@@ -65,7 +65,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::resource('/admin', 'AdminController');
 });
 Route::get('/profil', function () {
-   
+
 })->middleware('web');
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
