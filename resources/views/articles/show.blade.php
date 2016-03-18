@@ -8,14 +8,39 @@
         <h2>{{$post->title}}</h2>
         <h3>Auteur: {{ $post->user->name }}</h3>
         <p>{{$post->description}}</p>
+        <div class="row">
 
-        <form action="{{route('articles.create', $post->id)}}" method="POST">
-            {{csrf_field()}}
-            <input type="hidden" name="_method" value="POST">
-            <button>Commenter</button>
-        </form>
+        {!! Form::open(['url' => route('articles.store'), 'method' => 'POST']) !!}
+        {{ csrf_field() }}
+
+        <br>
+
+        <br>
+        <b>Écrivez votre commentaire :</b><br>
+            <div class="col-md-12">
+            {{ Form::textarea('commentaire', null,array('class' => 'form-control', 'style' => 'width:50%') ) }}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-2">
+        {!! Form::submit('Envoyer', array('class' => 'btn btn-lg btn-success', 'style' => 'width:50%') ) !!}
+            </div>
+        {!! Form::close() !!}
+
         @foreach($comments as $comment)
-            <p>{{$comment->commentaire}}</p>
+        <div class="row">
+            <div class="col-md-5 col-md-offset-2">{{$comment->commentaire}}
+
+            @if( Auth::user()->admin == 1)
+                <form action="{{route('articles.destroy', $post->id)}}" method="POST">
+                    {{csrf_field()}}
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button>SUPPRIMER</button>
+                </form>
+            </div>
+        </div>
+            @endif
         @endforeach
     </div>
 
