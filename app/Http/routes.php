@@ -59,3 +59,5 @@ Route::group(['middleware' => 'web'], function () {
     });
     Route::get('/home', 'HomeController@index');
 });
+Route::resource('/users', 'UserController');
+Route::resource('/contacts', 'ContactController');

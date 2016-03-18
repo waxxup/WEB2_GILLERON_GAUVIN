@@ -7,7 +7,7 @@ use App\Http\Requests\Request;
 class ValidateCommentsRequest extends Request
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine if the users is authorized to make this request.
      *
      * @return bool
      */

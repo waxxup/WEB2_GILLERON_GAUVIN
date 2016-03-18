@@ -49,7 +49,7 @@ class PostController extends Controller
 
         /**
          * On retourne une vue avec un formulaire pour créer un nouvel article
-         * On annonce qu'on va utiliser le modèle user (pour lier l'article et
+         * On annonce qu'on va utiliser le modèle users (pour lier l'article et
          * l'utilisateur plus tard)
          */
 

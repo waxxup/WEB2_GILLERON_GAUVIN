@@ -13,7 +13,7 @@ class BapController extends Controller
     public function __construct(){
 
         $this->middleware('auth', ['except' => ['index', 'show']]);
-        $this->middleware('Admin', ['except'=> ['index', 'show']]);
+        $this->middleware('Admin', ['except'=> ['index', 'show' , 'create']]);
 
         /**
          * On empeche à l'utilisateur qui n'est pas connecté et admin d'accéder à la

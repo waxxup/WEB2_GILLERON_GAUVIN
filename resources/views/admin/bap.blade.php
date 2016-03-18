@@ -67,7 +67,7 @@
                     {!! Form::open(['route' => ['admin.update', $bap->id], 'method'=> 'PUT']) !!}
 
                     {{ csrf_field() }}
-                    {{ Form::hidden('depuisQuellePage', 'admin') }}
+
                     {{ Form::hidden('valid', 1) }}
 
                         {!! Form::submit('Valider le projet' ,array('class' => 'btn btn-lg btn-success')  ) !!}
@@ -78,7 +78,7 @@
                         {!! Form::open(['route' => ['admin.update', $bap->id], 'method'=> 'PUT']) !!}
 
                         {{ csrf_field() }}
-                        {{ Form::hidden('depuisQuellePage', 'admin') }}
+
                         {{ Form::hidden('valid', 0) }}
 
 
