@@ -16,45 +16,45 @@ class PostController extends Controller
     {
         $this->middleware('Admin', ['except' => ['index', 'show']]);
 
+        /**
+         * On impose à l'utilisateur d'etre connecté en tant qu'admin pour accéder au create
+         */
+
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $posts = Post::all();
 
         return view('articles.index')->with(compact('posts'));
+
+        /**
+         * On retourne une vue avec tout les post affichés dessus
+         */
+
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
-        /*  $post = new Post;
-         $post->title = 'un autre article';
-         $post->description = 'une autre description';
-         $post->save(); */
+
         $comments = new Comment();
         $comments->commentaire = 'nouveau commentaire';
         $comments->save();
 
         $users = User::all()->lists('name', 'id');
         return view('articles.index')->with(compact('users'));
+
+        /**
+         * On retourne une vue avec un formulaire pour créer un nouvel article
+         * On annonce qu'on va utiliser le modèle user (pour lier l'article et
+         * l'utilisateur plus tard)
+         */
+
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Requests\ValidatePostRequest $request)
     {
         $this->validate($request, [
@@ -75,31 +75,7 @@ class PostController extends Controller
         $comments->commentaire            = $request->commentaire;
         $comments->save();
 
-        /*
-        $this->validate($request, [
-            'user_id' => 'required',
-            'title'   => 'required|min:10',
-            'description' => 'required|min:10'
 
-        ]);[
-            'user_id.required' => 'User id manquant',
-            'title.required' => 'Titre obligatoire',
-            'title.min' => 'Titre > 10 caractères',
-            'description.required' => 'Description obligatoire',
-            'Description.min' => 'Description > 10 caractères'
-
-
-    ];
-        */
-        /*
-        $post = new Post;
-        $post->user_id          = $request->user_id;
-        $post->title            = $request->title;
-        $post->description      = $request->description;
-
-        $post->save();
-*/
-        //Méthode 2
         $data = $request->except('_token');
         $data['user_id'] = $request->user()->id;
         $post = Post::create($data, $request->except('_token'));
@@ -110,14 +86,13 @@ class PostController extends Controller
 
         return redirect()->route('articles.show', $post->id);
 
+        /**
+         * On enregistre l'article dans la database
+         */
+
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
     public function show($id)
     {
@@ -130,25 +105,14 @@ class PostController extends Controller
         }
 
         return view('articles.show')->with(compact('post','comments', 'users'));
+
+        /**
+         * On affiche une vue avec l'article correspondant à l'url
+         */
+
     }
 
 
-    /*
-    $post = Post::find($id);
-    if($post) {
-        return $post->title;
-    }
-    else {
-        return 'Pas d\'articles !';
-    }*/
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
     public function edit($id)
     {
@@ -161,15 +125,13 @@ class PostController extends Controller
         }
 
         return view('articles.edit')->with(compact('users', 'post'));
+
+        /**
+         * On affiche un formulaire pour edit un article
+         */
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Requests\ValidatePostRequest $request, $id)
     {
         $post =Post::find($id);
@@ -189,15 +151,13 @@ class PostController extends Controller
 
         return redirect()->route('articles.show', $post->$id);
 
+        /**
+         * On update la database avec les valeurs du form de l'edit
+         */
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $comments = Comment::find($id);
@@ -226,6 +186,10 @@ class PostController extends Controller
         $post->delete();
 
         return redirect()->route('articles.index');
+
+        /**
+         * On supprime l'article par rapport à son id
+         */
 
     }
 }
